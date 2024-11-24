@@ -1,0 +1,30 @@
+<h3 class="text-center">GESTION CLIENTES</h3>
+<div class="tabla-container">
+    <br>
+    <table class="table table-striped">
+        <thead style="width: 100%;">
+            <tr>
+                <th>Id</th>
+                <th>DNI</th>
+                <th>NOMBRE</th>
+                <th>TELEFONO</th>
+                <th>EMAIL</th>
+                <th>DIRECCION</th>
+            </tr>
+        </thead>
+        <tbody style="width: 100%;">
+            <tr *ngFor= "let cliente of clientes">
+                <td>{{cliente.idcliente}}</td>
+                <td>{{cliente.dnicliente}}</td>
+                <td>{{cliente.nombrecliente}}</td>
+                <td>{{cliente.telefonocliente}}</td>
+                <td>{{cliente.emailcliente}}</td>
+                <td>{{cliente.direccioncliente}}</td>
+                <th style="width: 20%;">
+                    <button class="btn btn-info">Editar</button>
+                    <button class="btn btn-danger" style="margin-left: 25px;">Eliminar</button>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>

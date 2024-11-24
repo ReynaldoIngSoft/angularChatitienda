@@ -1,0 +1,47 @@
+
+
+<div class="col-md-6 offset-md-3">
+  <h3> Registro de Clientes</h3>
+    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">  
+    <div class="form-group">
+      <label>DNI</label>
+      <input [(ngModel)] ="objCliente.dnicliente" name="dnicliente" type="number" class="form-control"  placeholder="Ingresa DNI" required minlength="8" maxlength="8" #dnicliente="ngModel">   
+      <div *ngIf="dnicliente.invalid && dnicliente.touched" class="alerta-error">
+        <small *ngIf="dnicliente.errors?.['required']">El DNI es obligatorio.</small>
+        <small *ngIf="dnicliente.errors?.['minlength'] || dnicliente.errors?.['maxlength']">El DNI debe tener exactamente 8 dígitos.</small> 
+      </div>
+    </div>
+    <div class="form-group">
+      <label>NOMBRE</label>
+      <input [(ngModel)] ="objCliente.nombrecliente" name="nombrecliente" type="text" class="form-control"  placeholder="Nombre Completo" required minlength="3" #nombrecliente="ngModel">
+      <div *ngIf="nombrecliente.invalid && nombrecliente.touched" class="alerta-error">
+        <small *ngIf="nombrecliente.errors?.['required']">El nombre es obligatorio</small>
+        <small *ngIf="nombrecliente.errors?.['minlength']">El nombre debe tener al menos 3 caracteres</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>TELEFONO</label>
+      <input [(ngModel)] ="objCliente.telefonocliente" name="telefonocliente" type="number" class="form-control"  placeholder="Telefono" required minlength="9" maxlength="9" #telefonocliente="ngModel">
+      <div *ngIf="telefonocliente.invalid && telefonocliente.touched" class="alerta-error">
+          <small *ngIf="telefonocliente.errors?.['required']">El telefono es obligatorio</small>
+          <small *ngIf="telefonocliente.errors?.['minlength'] || telefonocliente.errors?.['maxlength']">El telefono debe tener exactamente 9 digitos</small> 
+      </div>
+    </div>
+    <div class="form-group">
+      <label>EMAIL</label>
+      <input [(ngModel)] ="objCliente.emailcliente" name="emailcliente" type="email" class="form-control"  placeholder="Email" required #emailcliente="ngModel">
+      <div *ngIf="emailcliente.invalid && emailcliente.touched" class="alerta-error">
+          <small *ngIf="emailcliente.errors?.['required']">El email es obligatorio</small>
+          <small *ngIf="emailcliente.errors?.['email']">Debe ingresar un correo valido</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>DIRECCION</label>
+      <input [(ngModel)] ="objCliente.direccioncliente" name="direccioncliente" type="text" class="form-control"  placeholder="Direccion" required #direccioncliente="ngModel">
+      <div *ngIf="direccioncliente.invalid && direccioncliente.touched" class="alerta-error">
+            <small *ngIf="direccioncliente.errors?.['required']">La direccion es obligatoria</small>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">REGISTRAR</button>
+    </form>
+</div>

@@ -1,0 +1,16 @@
+.padre{
+    display: flex;
+    margin: 20px 25px;
+}
+
+.formulario-container{
+    width: 40%;
+}
+.tabla-container{
+    width: 80%;
+    margin-left: 50px;
+}
+
+.mi-tabla{
+    width: 100%;
+}
