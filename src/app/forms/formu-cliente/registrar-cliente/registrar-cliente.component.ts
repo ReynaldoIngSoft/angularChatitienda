@@ -11,26 +11,36 @@ import Swal from 'sweetalert2';
 export class RegistrarClienteComponent implements OnInit {
  
   objCliente : Cliente = new Cliente();
+  formInvalido: boolean = false;
   constructor(private serviCliente:ClienteService,private router:Router){}
 
   ngOnInit(): void {
     
   }
-  onSubmit(){
+  onSubmit(clienteForm: any){
     console.log(this.objCliente);
-    this.guardarCliente();
+    if(clienteForm.valid){
+        this.guardarCliente();
+    }
+    else{
+      this.formInvalido =true;
+      this.mostrarMensajeError('Por favor completa todos los campor requeridos');
+    }
+
   }
 
   guardarCliente(){
-    this.serviCliente.registrarCliente(this.objCliente).subscribe(
-      dato => {
+    this.serviCliente.registrarCliente(this.objCliente).subscribe({
+      next: dato => {
         console.log(dato);
         this.mostrarMensajeConfirmacion();
+        this.regresarListadoCliente();
       },
-      error => {
+      error :error => {
        console.log(error);
+       this.mostrarMensajeError('Hubo un problema al registrar el cliente');
       }
-    )
+  })
   }
 
   mostrarMensajeConfirmacion(){
@@ -41,10 +51,10 @@ export class RegistrarClienteComponent implements OnInit {
    ) 
   }
 
-  mostrarMensajeError(){
+  mostrarMensajeError(mensaje: string){
     Swal.fire(
-      'Registro Erroneo',
-      `No se pudo registrar`,
+      'Error',
+       mensaje,
       'error'
     )
   }

@@ -1,0 +1,8 @@
+.alerta-error{
+    color:red;
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+body{
+    background-color: blue;
+}

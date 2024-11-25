@@ -2,13 +2,16 @@
 
 <div class="col-md-6 offset-md-3">
   <h3> Registro de Clientes</h3>
-    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">  
-    <div class="form-group">
+    <form #clienteForm="ngForm" (ngSubmit)="onSubmit(clienteForm)">  
+      <div *ngIf="clienteForm.invalid && clienteForm.touched" class ="alert alert-danger">
+          Por favor corrige, los errores antes de enviar el formulario
+      </div>
+      <div class="form-group">
       <label>DNI</label>
-      <input [(ngModel)] ="objCliente.dnicliente" name="dnicliente" type="number" class="form-control"  placeholder="Ingresa DNI" required minlength="8" maxlength="8" #dnicliente="ngModel">   
+      <input [(ngModel)] ="objCliente.dnicliente" name="dnicliente" type="text" class="form-control"  placeholder="Ingresa DNI" required pattern="^[0-9]{8}$" #dnicliente="ngModel">   
       <div *ngIf="dnicliente.invalid && dnicliente.touched" class="alerta-error">
         <small *ngIf="dnicliente.errors?.['required']">El DNI es obligatorio.</small>
-        <small *ngIf="dnicliente.errors?.['minlength'] || dnicliente.errors?.['maxlength']">El DNI debe tener exactamente 8 dígitos.</small> 
+        <small *ngIf="dnicliente.errors?.['pattern']">El DNI debe tener exactamente 8 dígitos.</small> 
       </div>
     </div>
     <div class="form-group">
@@ -21,10 +24,10 @@
     </div>
     <div class="form-group">
       <label>TELEFONO</label>
-      <input [(ngModel)] ="objCliente.telefonocliente" name="telefonocliente" type="number" class="form-control"  placeholder="Telefono" required minlength="9" maxlength="9" #telefonocliente="ngModel">
+      <input [(ngModel)] ="objCliente.telefonocliente" name="telefonocliente" type="text" class="form-control"  placeholder="Telefono" required pattern="^[0-9]{9}$" #telefonocliente="ngModel">
       <div *ngIf="telefonocliente.invalid && telefonocliente.touched" class="alerta-error">
           <small *ngIf="telefonocliente.errors?.['required']">El telefono es obligatorio</small>
-          <small *ngIf="telefonocliente.errors?.['minlength'] || telefonocliente.errors?.['maxlength']">El telefono debe tener exactamente 9 digitos</small> 
+          <small *ngIf="telefonocliente.errors?.['pattern']">El telefono debe tener exactamente 9 digitos</small> 
       </div>
     </div>
     <div class="form-group">

@@ -8,18 +8,17 @@ import { Cliente } from '../models/cliente';
 })
 export class ClienteService {
   //esta url obtiene el listado de clientes
-  private baseURL = "http://localhost:8060/api/clientes/obtener"
-  private urlRegi = "http://localhost:8060/api/clientes/guardar"
+  private baseURL = "http://localhost:8060/api/clientes"
   constructor(
     private httpClient : HttpClient
   ) { }
 
 
   obtenetDatosClientes():Observable<Cliente[]>{
-    return this.httpClient.get<Cliente[]>(`${this.baseURL}`); 
+    return this.httpClient.get<Cliente[]>(`${this.baseURL}/obtener`); 
   }
   registrarCliente(cliente:Cliente):Observable<Object>{
-    return this.httpClient.post(`${this.urlRegi}`,cliente);
+    return this.httpClient.post(`${this.baseURL}/save`, cliente);
   }
  
 }

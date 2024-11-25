@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 
@@ -11,7 +12,7 @@ export class FormuClienteComponent implements OnInit {
 
   clientes:Cliente[];
 
-  constructor(private clienteservice:ClienteService){}
+  constructor(private clienteservice:ClienteService,private router:Router){}
 
   ngOnInit(): void {
     this.obtenerClientes();
@@ -21,6 +22,10 @@ export class FormuClienteComponent implements OnInit {
       this.clienteservice.obtenetDatosClientes().subscribe(dato =>{
         this.clientes = dato;
       });
+    }
+
+    private registrarCliente(){
+      this.router.navigate(['/registrarcliente']);
     }
   
   }
