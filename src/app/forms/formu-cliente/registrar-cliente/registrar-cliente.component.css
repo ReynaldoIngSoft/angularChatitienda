@@ -6,3 +6,21 @@
 body{
     background-color: blue;
 }
+
+.btn btn-primary{
+    &:hover {
+        background-color: #093766; /* Verde más oscuro al pasar el ratón */
+    }
+}
+.btn-verde {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: #fff; /* Texto blanco */
+    border-radius: 7px;
+    margin: 0 10px;
+    height: 37px;
+    &:hover {
+        background-color: #3e8e41; /* Verde más oscuro al pasar el ratón */
+    }
+}
+

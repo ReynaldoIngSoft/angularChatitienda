@@ -19,14 +19,34 @@ export class RegistrarClienteComponent implements OnInit {
   }
   onSubmit(clienteForm: any){
     console.log(this.objCliente);
+   
     if(clienteForm.valid){
-        this.guardarCliente();
+        this.validarClientePorDni(this.objCliente.dnicliente);
     }
-    else{
+    else{  
       this.formInvalido =true;
-      this.mostrarMensajeError('Por favor completa todos los campor requeridos');
+      this.mostrarMensajeError('Por favor completa todos los campos requeridos');
     }
 
+  }
+  validarClientePorDni(dni: number){
+    this.serviCliente.buscarporDni(dni).subscribe({
+      next: (clientito:Cliente) => {
+        this.mostrarMensajeError(
+          `El cliente con dni ${dni} ya existe : ${clientito.nombrecliente}`
+
+        );
+       
+      },
+      error: (error) => {
+        if (error.status === 404){
+          this.guardarCliente();
+          console.error(`Error al registrar cliente `, error);
+          this.mostrarMensajeError(`hubo un problema al validar al cliente`)
+        }
+      }
+      
+    })
   }
 
   guardarCliente(){
@@ -62,4 +82,6 @@ export class RegistrarClienteComponent implements OnInit {
   regresarListadoCliente(){
     this.router.navigate(['/cliente']);
   }
+
+  
 }
